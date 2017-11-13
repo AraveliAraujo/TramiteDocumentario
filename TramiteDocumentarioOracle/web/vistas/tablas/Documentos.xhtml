@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/#{logeoC.user.template}">
+
+            <ui:define name="content">
+                <h:form id="frm">
+                     <p:growl id="msg" showDetail="true" autoUpdate="true"/>
+                    <p:dataTable id="data"
+                                 paginator="true"
+                                 value="#{documentosC.lstDocumentos}"
+                                 var="docs" rowKey="#{docs.codDocs}"
+                                 rowsPerPageTemplate="5 10 15 20 30 40" 
+                                 rows="5">
+                        <p:column headerText="Tipo Documento" >
+                            <h:outputText value="#{docs.tipoDocs}" />
+                        </p:column>
+                        <p:column headerText="Días Límite" >
+                            <h:outputText value="#{docs.diaDocs}" />
+                        </p:column>
+                        <p:column headerText="Costo" >
+                            <h:outputText value="#{docs.costDocs}" />
+                        </p:column>
+                        <p:column headerText="TUPA" >
+                            <h:outputText value="#{docs.tupa}" />
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton value="Nuevo" 
+                                             icon="ui-icon-plusthick"
+                                             actionListener="#{documentosC.preparedDocs()}"
+                                             oncomplete="PF('addDocumento').show()"
+                                             update=":addform"/>
+                        </f:facet>
+                    </p:dataTable>
+                </h:form>
+                <ui:include src="add/addDocumento.xhtml"/>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

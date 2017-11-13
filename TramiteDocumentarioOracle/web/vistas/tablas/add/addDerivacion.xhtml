@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="addTram"
+                  widgetVar="addDerivacion"
+                  modal="true"                  
+                  resizable="false"
+                  appendTo="@(body)"
+                  header="Derivar Documento"
+                  responsive="true"
+                  closeOnEscape="true">
+            <h:form id="addform">
+                <p:panelGrid>
+                    <p:growl id="msg" showDetail="true" autoUpdate="true"/>
+                </p:panelGrid>
+                <p:panel id="frmProd">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h:outputLabel value="Observación" for="obserTram"/>
+                            <p:inputText class="form-control" id="obserTram" 
+                                         value="#{derivacionC.derivacion.obserDer}" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-5">
+                            <h:outputLabel value="Empleado"/>
+                            <br/>
+                            <p:selectOneMenu value="#{derivacionC.derivacion.codEmple}" id="codEmp" 
+                                             style="width: 100%" required="true" requiredMessage="Seleccionar Empleado">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItems value="#{tramitesC.lstEmpleados}"
+                                               var="emple"
+                                               itemLabel="#{emple.nomEmp} #{emple.apeEmp}"
+                                               itemValue="#{emple.codEmp}"/>
+                            </p:selectOneMenu>
+
+                        </div>
+
+                        <div class="col-md-5">
+                            <h:outputLabel value="Área"/>
+                            <br/>
+                            <p:selectOneMenu value="#{derivacionC.derivacion.codA}" id="codA" 
+                                             style="width: 100%" required="true" requiredMessage="Seleccionar Área">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItems value="#{areasC.lstAreas}"
+                                               var="area"
+                                               itemLabel="#{area.nomArea}"
+                                               itemValue="#{area.codArea}"/>
+                            </p:selectOneMenu>
+                        </div>
+                    </div>
+                    <br/>
+                    <p:commandButton value="Ingresar"
+                                     icon="ui-icon-check"
+                                     actionListener="#{derivacionC.addDerivacion()}"
+                                     oncomplete="handleSubmit(args,'addDerivacion');"
+                                     update="addform :frm:msg :frm:data"/>
+
+                    <p:commandButton value="Cancelar"
+                                     icon="ui-icon-close" 
+                                     onclick="PF('addDerivacion').hide()"
+                                     immediate="true"/>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="editTramite"
+                  widgetVar="editarTram"
+                  modal="true"
+                  appendTo="@(body)"
+                  header="Actualizar Trámite"
+                  responsive="true"
+                  closeOnEscape="true">
+
+            <h:form id="editTram">
+
+                <p:panelGrid id="panel">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h:outputLabel value="Estado" for="fechaTram"/>
+                            <p:inputText class="form-control" id="fechaTram" disabled="true"
+                                         value="En Espera" style="width: 100%"/>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h:outputLabel value="Respuesta" for="rptaTram"/>
+                            <p:inputText class="form-control" id="rptaTram" 
+                                         value="#{tramitesC.tramites.rptaTram}" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-4">
+                            <h:outputLabel value="Observación" for="obserTram"/>
+                            <p:inputText class="form-control" id="obserTram" 
+                                         value="#{tramitesC.tramites.obserTram}" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-4">
+                            <h:outputLabel value="Foliación" for="folTram"/>
+                            <p:inputText class="form-control" id="folTram"
+                                         value="#{tramitesC.tramites.foliacion}" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-4">
+                            <h:outputLabel value="Asunto" for="asuntoTram"/>
+                            <p:inputText class="form-control" id="asuntoTram" 
+                                         value="#{tramitesC.tramites.asuntoTram}" style="width: 100%"/>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h:outputLabel value="Usuario"/>
+                            <br/>
+                            <p:selectOneMenu value="#{tramitesC.tramites.codUsu}" id="codUsu" 
+                                             style="width: 100%" required="true" requiredMessage="Seleccionar Usuario">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItems value="#{usuariosC.lstUsuarios}"
+                                               var="usu"
+                                               itemLabel="#{usu.nomUsu} #{usu.apeUsu}"
+                                               itemValue="#{usu.codUsu}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="col-md-3">
+                            <h:outputLabel value="Empresa"/>
+                            <br/>
+                            <p:selectOneMenu value="#{tramitesC.tramites.codEmpre}" id="codEmpre" 
+                                             style="width: 100%" required="true" requiredMessage="Seleccionar Empresa">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItems value="#{empresasC.lstEmpresas}"
+                                               var="empre"
+                                               itemLabel="#{empre.nomEmpre}"
+                                               itemValue="#{empre.codEmpre}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="col-md-3">
+                            <h:outputLabel value="Área"/>
+                            <br/>
+                            <p:selectOneMenu value="#{tramitesC.tramites.codA}" id="codA" 
+                                             style="width: 100%" required="true" requiredMessage="Seleccionar Área">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItems value="#{areasC.lstAreas}"
+                                               var="area"
+                                               itemLabel="#{area.nomArea}"
+                                               itemValue="#{area.codArea}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="col-md-3">
+                            <h:outputLabel value="Documentos"/>
+                            <br/>
+                            <p:selectOneMenu value="#{tramitesC.tramites.codDocs}" id="codDocs" 
+                                             style="width: 100%" required="true" requiredMessage="Seleccionar Documento">
+                                <f:selectItem itemLabel="Seleccione"/>
+                                <f:selectItems value="#{documentosC.lstDocumentos}"
+                                               var="docs"
+                                               itemLabel="#{docs.tipoDocs}"
+                                               itemValue="#{docs.codDocs}"/>
+                            </p:selectOneMenu>
+                        </div>
+
+                    </div>
+                    
+                    <p:commandButton value="Actualizar"
+                                     icon="ui-icon-check" actionListener="#{tramitesC.editarTram()}"
+                                     oncomplete="handleSubmit(args,'editarTramite');"
+                                     update="editTram :frm:msg :frm:data"/>
+
+                    <p:commandButton value="Cancelar"
+                                     icon="ui-icon-close" 
+                                     onclick="PF('editarTramite').hide()"
+                                     immediate="true"/>
+                    <br/>
+                    <br/>
+                </p:panelGrid>
+                <br/>
+                <br/>
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+</html>

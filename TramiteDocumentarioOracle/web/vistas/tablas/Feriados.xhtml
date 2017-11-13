@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./../templates/#{logeoC.user.template}">
+
+            <ui:define name="content">
+                <h:form id="frm">
+                    <p:growl id="msg" showDetail="true" autoUpdate="true"/>
+                    <p:dataTable id="data"
+                                 paginator="true"
+                                 value="#{feriadosC.lstFeriados}"
+                                 var="fer" rowKey="#{fer.codFer}"
+                                 rowsPerPageTemplate="5 10 15 20 30 40" 
+                                 rows="5">
+                        <p:column headerText="Código" >
+                            <h:outputText value="#{fer.codFer}" />
+                        </p:column>
+                        <p:column headerText="Día Feriado" >
+                            <h:outputText value="#{fer.diaFer}" />
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton value="Agregar" 
+                                             icon="ui-icon-plusthick"
+                                             actionListener="#{feriadosC.preparedFeriados()}"
+                                             oncomplete="PF('addFeriado').show()"
+                                             update=":addform"/>
+                        </f:facet>
+                    </p:dataTable>
+                </h:form>
+                <ui:include src="add/addFeriado.xhtml" />
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

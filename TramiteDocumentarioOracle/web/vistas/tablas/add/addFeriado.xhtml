@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="addFeriadoas"
+                  widgetVar="addFeriado"
+                  modal="true"                  
+                  resizable="false"
+                  appendTo="@(body)"
+                  header="Seleccione Feriado"
+                  responsive="true"
+                  closeOnEscape="true">
+            <h:form id="addform">
+                <p:panelGrid>
+                    <p:growl id="msg" showDetail="true" autoUpdate="true"/>
+                </p:panelGrid>
+                <p:panel id="frmFeriado">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p:outputLabel for="german" value="German:" />
+                            <p:calendar id="german" value="#{feriadosC.feriados.diaFer}" navigator="true" />
+
+                        </div>
+                    </div>
+                    <br/>
+                    <p:commandButton value="Ingresar"
+                                     icon="ui-icon-check"
+                                     actionListener="#{feriadosC.addaaaferiado()}"
+                                     oncomplete="handleSubmit(args,'addFeriado');"
+                                     update="addform :frm:msg :frm:data"/>
+
+                    <p:commandButton value="Cancelar"
+                                     icon="ui-icon-close" 
+                                     onclick="PF('addFeriado').hide()"
+                                     immediate="true"/>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>

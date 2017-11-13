@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../templates/#{logeoC.user.template}">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable id="data"
+                                 paginator="true"
+                                 value="#{usuariosC.lstUsuarios}"
+                                 var="usu" rowKey="#{usu.codUsu}"
+                                 rowsPerPageTemplate="5 10 15 20 30 40" 
+                                 rows="5">
+                        <p:column style="width: 50px">
+                            <p:rowToggler/>
+                        </p:column>
+                        <p:column headerText="Código" >
+                            <h:outputText value="#{usu.codUsu}" />
+                        </p:column>
+                        <p:column headerText="Nombres" >
+                            <h:outputText value="#{usu.nomUsu} #{usu.apeUsu}" />
+                        </p:column>
+                        <p:column headerText="DNI" >
+                            <h:outputText value="#{usu.dniUsu}" />
+                        </p:column>
+                        <p:column headerText="Celular" >
+                            <h:outputText value="#{usu.celUsu}" />
+                        </p:column>
+                        <p:rowExpansion>
+                            <p:column headerText="Email" >
+                                <h:outputText value="#{usu.emaUsu}" />
+                            </p:column>
+                            <p:column headerText="Diercción" >
+                                <h:outputText value="#{usu.dirUsum}" />
+                            </p:column>
+                            <p:column headerText="Ubigeo" >
+                                <h:outputText value="#{usu.codUbi}" />
+                            </p:column>
+                        </p:rowExpansion>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
