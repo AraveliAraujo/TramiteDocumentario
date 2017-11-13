@@ -40,6 +40,7 @@ public class DerivacionC implements Serializable{
         try {
             derivacion.setCodTram(selectedTram.getCodTram());
             dao.addDerivacion(derivacion);
+            clearDerivacion();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Correcto", "Documento Derivado"));
         } catch (Exception e) {
             throw e;
@@ -48,6 +49,15 @@ public class DerivacionC implements Serializable{
 
     public void preparedTramites() throws Exception {
         selected = new DerivacionM();
+    }
+    
+    
+    public void clearDerivacion() {
+        try {
+            derivacion = new DerivacionM();
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     public DerivacionM getDerivacion() {

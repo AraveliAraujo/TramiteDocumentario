@@ -69,6 +69,7 @@ public class TramitesC implements Serializable {
         try {
             dao.addTramites(tramites);
             listarTramites();
+            limpiar();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Correcto", "Trámite Ingresado"));
         } catch (Exception e) {
             throw e;

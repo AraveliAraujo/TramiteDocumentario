@@ -12,26 +12,29 @@
             <ui:define name="content">
                 <h:form id="frm">
                     <p:growl id="msg" showDetail="true" autoUpdate="true"/>
-                    <p:dataTable id="data"
-                                 paginator="true"
-                                 value="#{feriadosC.lstFeriados}"
-                                 var="fer" rowKey="#{fer.codFer}"
-                                 rowsPerPageTemplate="5 10 15 20 30 40" 
-                                 rows="5">
-                        <p:column headerText="Código" >
-                            <h:outputText value="#{fer.codFer}" />
-                        </p:column>
-                        <p:column headerText="Día Feriado" >
-                            <h:outputText value="#{fer.diaFer}" />
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton value="Agregar" 
-                                             icon="ui-icon-plusthick"
-                                             actionListener="#{feriadosC.preparedFeriados()}"
-                                             oncomplete="PF('addFeriado').show()"
-                                             update=":addform"/>
-                        </f:facet>
-                    </p:dataTable>
+                    <center><p:panel style="width: 500px; border: none">
+                            <p:dataTable id="data"
+                                         paginator="true"
+                                         value="#{feriadosC.lstFeriados}"
+                                         var="fer" rowKey="#{fer.codFer}"
+                                         rowsPerPageTemplate="5 10 15 20 30 40" 
+                                         rows="5">
+                                <p:column headerText="Código" >
+                                    <h:outputText value="#{fer.codFer}" />
+                                </p:column>
+                                <p:column headerText="Día Feriado" >
+                                    <h:outputText value="#{fer.diaFer}" />
+                                </p:column>
+                                <f:facet name="footer">
+                                    <p:commandButton value="Agregar" 
+                                                     icon="ui-icon-plusthick"
+                                                     actionListener="#{feriadosC.preparedFeriados()}"
+                                                     oncomplete="PF('addFeriado').show()"
+                                                     update=":addform"/>
+                                </f:facet>
+                            </p:dataTable>
+                        </p:panel> 
+                    </center>
                 </h:form>
                 <ui:include src="add/addFeriado.xhtml" />
             </ui:define>

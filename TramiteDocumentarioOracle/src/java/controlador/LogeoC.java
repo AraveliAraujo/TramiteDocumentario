@@ -35,10 +35,10 @@ public class LogeoC implements Serializable {
                 btnAddTram();
                 switch (user.getLevelEmple()) {
                     case 1:
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("/TramiteDocumentario/faces/vistas/tablas/Tramites.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/TramiteDocumentarioOracle/faces/vistas/tablas/Tramites.xhtml");
                         break;
                     case 2:
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("/TramiteDocumentario/faces/vistas/tablas/Tramites.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/TramiteDocumentarioOracle/faces/vistas/tablas/Tramites.xhtml");
                         break;
                     default:    //Si no tiene privilegios niega el acceso
                         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error", "Usuario denegado"));
