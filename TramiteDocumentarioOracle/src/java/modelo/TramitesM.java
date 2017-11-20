@@ -3,9 +3,9 @@ package modelo;
 import java.sql.Date;
 
 public class TramitesM {
-   private String CodTram, estatram, RptaTram, NomEmp, ApeEmp, CodEmp,
-           ObserTram, AsuntoTram, CodEmpre, CodA, FechDer,
-           CodDocs, CodUsu, Foliacion, CodDer, NomA,
+   private String CodTram, estatram, RptaTram, NomEmp, ApeEmp, CodEmp, ApeUsu,
+           ObserTram, AsuntoTram, CodEmpre, CodA, FechDer, NomEmpre, Tipodocs,
+           CodDocs, CodUsu, Foliacion, CodDer, NomA, EstTram, NomUsu,
            DiasLegales, DiasExcedidos, DiasReales;
    private Date FechTram;
 
@@ -169,6 +169,47 @@ public class TramitesM {
     public void setFechDer(String FechDer) {
         this.FechDer = FechDer;
     }
+
+    public String getNomEmpre() {
+        return NomEmpre;
+    }
+
+    public void setNomEmpre(String NomEmpre) {
+        this.NomEmpre = NomEmpre;
+    }
+
+    public String getTipodocs() {
+        return Tipodocs;
+    }
+
+    public void setTipodocs(String Tipodocs) {
+        this.Tipodocs = Tipodocs;
+    }
+
+    public String getEstTram() {
+        return EstTram;
+    }
+
+    public void setEstTram(String EstTram) {
+        this.EstTram = EstTram;
+    }
+
+    public String getNomUsu() {
+        return NomUsu;
+    }
+
+    public void setNomUsu(String NomUsu) {
+        this.NomUsu = NomUsu;
+    }
+
+    public String getApeUsu() {
+        return ApeUsu;
+    }
+
+    public void setApeUsu(String ApeUsu) {
+        this.ApeUsu = ApeUsu;
+    }
    
+    
    
 }

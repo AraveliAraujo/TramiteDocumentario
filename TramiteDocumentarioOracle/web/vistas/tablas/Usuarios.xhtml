@@ -3,14 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../templates/#{logeoC.user.template}">
 
             <ui:define name="content">
-                <h:form>
+                <h:form id="frm">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <center><h1>USUARIOS</h1></center>
+                    <p:growl id="msg" showDetail="true" autoUpdate="true"/>
                     <p:dataTable id="data"
                                  paginator="true"
                                  value="#{usuariosC.lstUsuarios}"
@@ -20,7 +26,7 @@
                         <p:column style="width: 50px">
                             <p:rowToggler/>
                         </p:column>
-                        <p:column headerText="Código" >
+                        <p:column headerText="Código" style="width:12%; alignment-adjust: central" >
                             <h:outputText value="#{usu.codUsu}" />
                         </p:column>
                         <p:column headerText="Nombres" >
@@ -33,18 +39,31 @@
                             <h:outputText value="#{usu.celUsu}" />
                         </p:column>
                         <p:rowExpansion>
-                            <p:column headerText="Email" >
-                                <h:outputText value="#{usu.emaUsu}" />
-                            </p:column>
-                            <p:column headerText="Diercción" >
-                                <h:outputText value="#{usu.dirUsum}" />
-                            </p:column>
-                            <p:column headerText="Ubigeo" >
-                                <h:outputText value="#{usu.codUbi}" />
-                            </p:column>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h:outputLabel value="Email:  "/>
+                                    <h:outputText value="#{usu.emaUsu}" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Dirección: "/>
+                                    <h:outputText value="#{usu.dirUsum}" />
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Ubigeo: "/>
+                                    <h:outputText value="#{usu.dpto}, #{usu.prov}, #{usu.dist}" />
+                                </div>
+                            </div>
                         </p:rowExpansion>
+                        <f:facet name="footer">
+                            <p:commandButton value="Agregar" 
+                                             icon="ui-icon-plusthick"
+                                             actionListener="#{feriadosC.preparedFeriados()}"
+                                             oncomplete="PF('addUsuario').show()"
+                                             update=":addformu"/>
+                        </f:facet>
                     </p:dataTable>
                 </h:form>
+                <ui:include src="add/addUsuario.xhtml" />
             </ui:define>
 
         </ui:composition>

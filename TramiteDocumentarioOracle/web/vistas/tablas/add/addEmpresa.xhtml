@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="addEmpresa"
+                  widgetVar="addEmpresa"
+                  modal="true"                  
+                  resizable="false"
+                  appendTo="@(body)"
+                  header="Agregar Empresa"
+                  responsive="true"
+                  closeOnEscape="true">
+            <h:form id="addEmpresa2">
+                <p:panelGrid>
+                    <p:growl id="msg" showDetail="true" autoUpdate="true"/>
+                </p:panelGrid>
+                <p:panel id="frmProd" style="width: 1000px">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h:outputLabel value="NOMBRE" for="nomEmpre"/>
+                            <p:inputText class="form-control" id="nomEmpre" 
+                                         value="#{empresasC.empresas.nomEmpre}" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-5">
+                            <h:outputLabel value="RUC" for="RUCEmpre"/>
+                            <p:inputMask mask="99999999999"  class="form-control" id="RUCEmpre"
+                                         value="#{empresasC.empresas.rucEmpre}" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h:outputLabel value="DIRECCIÓN" for="DirEmpre"/>
+                            <p:inputText class="form-control" id="DirEmpre"
+                                         value="#{empresasC.empresas.dirEmpre}" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-5">
+                            <h:outputLabel value="TELÉFONO" for="telEmpre"/>
+                            <p:inputMask mask="9999999" class="form-control" id="telEmpre"
+                                         value="#{empresasC.empresas.telEmpre}" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h:outputLabel value="UBIGEO" for="ubiEmpre"/>
+                            <p:inputText class="form-control" id="ubiEmpre"
+                                         value="#{empresasC.empresas.codUbi}" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <p:commandButton value="Ingresar"
+                                     icon="ui-icon-check"
+                                     actionListener="#{empresasC.addEmpresa()}"
+                                     oncomplete="handleSubmit(args,'addEmpresa');"
+                                     update="addEmpresa :frm:msg :frm:data"/>
+
+                    <p:commandButton value="Cancelar"
+                                     icon="ui-icon-close" 
+                                     onclick="PF('addUsuario').hide()"
+                                     immediate="true"/>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>

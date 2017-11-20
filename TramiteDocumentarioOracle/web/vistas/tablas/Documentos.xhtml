@@ -12,33 +12,43 @@
 
             <ui:define name="content">
                 <h:form id="frm">
-                     <p:growl id="msg" showDetail="true" autoUpdate="true"/>
-                    <p:dataTable id="data"
-                                 paginator="true"
-                                 value="#{documentosC.lstDocumentos}"
-                                 var="docs" rowKey="#{docs.codDocs}"
-                                 rowsPerPageTemplate="5 10 15 20 30 40" 
-                                 rows="5">
-                        <p:column headerText="Tipo Documento" >
-                            <h:outputText value="#{docs.tipoDocs}" />
-                        </p:column>
-                        <p:column headerText="Días Límite" >
-                            <h:outputText value="#{docs.diaDocs}" />
-                        </p:column>
-                        <p:column headerText="Costo" >
-                            <h:outputText value="#{docs.costDocs}" />
-                        </p:column>
-                        <p:column headerText="TUPA" >
-                            <h:outputText value="#{docs.tupa}" />
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton value="Nuevo" 
-                                             icon="ui-icon-plusthick"
-                                             actionListener="#{documentosC.preparedDocs()}"
-                                             oncomplete="PF('addDocumento').show()"
-                                             update=":addform"/>
-                        </f:facet>
-                    </p:dataTable>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <center><h1>DOCUMENTOS</h1></center>
+                    <p:growl id="msg" showDetail="true" autoUpdate="true"/>
+                    <center><p:panel style="width: 800px; border: none">
+                            <p:dataTable id="data"
+                                         paginator="true"
+                                         value="#{documentosC.lstDocumentos}"
+                                         var="docs" rowKey="#{docs.codDocs}"
+                                         rowsPerPageTemplate="5 10 15 20 30 40" 
+                                         rows="5">
+                                <p:column headerText="Tipo Documento" style="width:28%; alignment-adjust: central">
+                                    <h:outputText value="#{docs.tipoDocs}" />
+                                </p:column>
+                                <p:column headerText="Días Límite" style="width:12%; alignment-adjust: central">
+                                    <h:outputText value="#{docs.diaDocs}" />
+                                </p:column>
+                                <p:column headerText="Costo" style="width:12%; alignment-adjust: central">
+                                    <h:outputText value="#{docs.costDocs}" />
+                                </p:column>
+                                <p:column headerText="TUPA" style="width:12%; alignment-adjust: central">
+                                    <h:outputText value="#{docs.esTupa}" />
+                                </p:column>
+                                <f:facet name="footer">
+                                    <p:commandButton value="Nuevo" 
+                                                     icon="ui-icon-plusthick"
+                                                     actionListener="#{documentosC.preparedDocs()}"
+                                                     oncomplete="PF('addDocumento').show()"
+                                                     update=":addform"/>
+                                </f:facet>
+                            </p:dataTable>
+                        </p:panel>
+                    </center>
+                    <br/>
+                    <br/>
+                    <br/>
                 </h:form>
                 <ui:include src="add/addDocumento.xhtml"/>
             </ui:define>

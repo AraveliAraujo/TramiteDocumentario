@@ -19,14 +19,16 @@
                 <p:panelGrid>
                     <p:growl id="msg" showDetail="true" autoUpdate="true"/>
                 </p:panelGrid>
-                <p:panel id="frmProd">
+                <p:panel id="frmProd" style="width: 500px; border: none">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-12">
                             <h:outputLabel value="Observación" for="obserTram"/>
                             <p:inputText class="form-control" id="obserTram" 
                                          value="#{derivacionC.derivacion.obserDer}" style="width: 100%"/>
                         </div>
-                        <div class="col-md-5">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <h:outputLabel value="Empleado"/>
                             <br/>
                             <p:selectOneMenu value="#{derivacionC.derivacion.codEmple}" id="codEmp" 
@@ -39,8 +41,9 @@
                             </p:selectOneMenu>
 
                         </div>
-
-                        <div class="col-md-5">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <h:outputLabel value="Área"/>
                             <br/>
                             <p:selectOneMenu value="#{derivacionC.derivacion.codA}" id="codA" 

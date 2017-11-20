@@ -18,6 +18,8 @@ public class LogeoC implements Serializable {
 
     LogeoM user = new LogeoM();
     private boolean btnAdd;
+    private boolean edit;
+    private boolean cerrar;
 
     public void iniciarSesion() throws Exception {
         LogeoD dao;
@@ -33,11 +35,16 @@ public class LogeoC implements Serializable {
                 HttpSession session = SessionUtils.getSession();
                 session.setAttribute("username", user);
                 btnAddTram();
+                editTram();
+                cerrarTram();
                 switch (user.getLevelEmple()) {
                     case 1:
                         FacesContext.getCurrentInstance().getExternalContext().redirect("/TramiteDocumentarioOracle/faces/vistas/tablas/Tramites.xhtml");
                         break;
                     case 2:
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("/TramiteDocumentarioOracle/faces/vistas/tablas/Tramites.xhtml");
+                        break;
+                    case 3:
                         FacesContext.getCurrentInstance().getExternalContext().redirect("/TramiteDocumentarioOracle/faces/vistas/tablas/Tramites.xhtml");
                         break;
                     default:    //Si no tiene privilegios niega el acceso
@@ -54,7 +61,7 @@ public class LogeoC implements Serializable {
         try {
             HttpSession session = SessionUtils.getSession();
             session.invalidate();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/TramiteDocumentario/faces/login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/TramiteDocumentarioOracle/faces/login.xhtml");
         } catch (IOException e) {
             throw e;
         }
@@ -63,8 +70,36 @@ public class LogeoC implements Serializable {
     public void btnAddTram() {
         if (user.getLevelEmple() == 1) {
             setBtnAdd(true);
-        } else {
+        }
+        if (user.getLevelEmple() == 2) {
             setBtnAdd(false);
+        }
+        if (user.getLevelEmple() == 3) {
+            setBtnAdd(false);
+        }
+    }
+
+    public void editTram() {
+        if (user.getLevelEmple() == 1) {
+            setEdit(false);
+        }
+        if (user.getLevelEmple() == 2) {
+            setEdit(true);
+        }
+        if (user.getLevelEmple() == 3) {
+            setEdit(false);
+        }
+    }
+
+    public void cerrarTram() {
+        if (user.getLevelEmple() == 1) {
+            setCerrar(true);
+        }
+        if (user.getLevelEmple() == 2) {
+            setCerrar(false);
+        }
+        if (user.getLevelEmple() == 3) {
+            setCerrar(true);
         }
     }
 
@@ -82,6 +117,22 @@ public class LogeoC implements Serializable {
 
     public void setBtnAdd(boolean btnAdd) {
         this.btnAdd = btnAdd;
+    }
+
+    public boolean isEdit() {
+        return edit;
+    }
+
+    public void setEdit(boolean edit) {
+        this.edit = edit;
+    }
+
+    public boolean isCerrar() {
+        return cerrar;
+    }
+
+    public void setCerrar(boolean cerrar) {
+        this.cerrar = cerrar;
     }
 
 }

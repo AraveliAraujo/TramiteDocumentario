@@ -3,8 +3,8 @@ package modelo;
 public class EmpleadosM {
 
     private String CodEmple,
-            DniEmple,
-            NomEmple, ApeEmple,
+            DniEmple, Dpto, Prov, Dist,
+            NomEmple, ApeEmple, NomA,
             EmaiEmple, CelEmple,
             DirEmple, UserEmple, PssEmple,
             LevelEmple, CodUbi, CodA;
@@ -88,6 +88,19 @@ public class EmpleadosM {
     public void setLevelEmple(String LevelEmple) {
         this.LevelEmple = LevelEmple;
     }
+    
+    public String getNivel(){
+        switch (Integer.parseInt(String.valueOf(this.LevelEmple))) {
+            case 1:
+                return "Administrador";
+            case 2:
+                return "Usuario";
+            case 3:
+                return "Encargado de Área";
+            default:
+                return "Desconocido";
+        }
+    }
 
     public String getCodUbi() {
         return CodUbi;
@@ -105,4 +118,37 @@ public class EmpleadosM {
         this.CodA = CodA;
     }
 
+    public String getDpto() {
+        return Dpto;
+    }
+
+    public void setDpto(String Dpto) {
+        this.Dpto = Dpto;
+    }
+
+    public String getProv() {
+        return Prov;
+    }
+
+    public void setProv(String Prov) {
+        this.Prov = Prov;
+    }
+
+    public String getDist() {
+        return Dist;
+    }
+
+    public void setDist(String Dist) {
+        this.Dist = Dist;
+    }
+
+    public String getNomA() {
+        return NomA;
+    }
+
+    public void setNomA(String NomA) {
+        this.NomA = NomA;
+    }
+    
+    
 }

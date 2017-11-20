@@ -13,7 +13,7 @@ public class AreasD extends Dao {
         ResultSet rs;
         try {
             this.Conectar();
-            String sql = "SELECT * FROM AREAS";
+            String sql = "SELECT * FROM AREAS ORDER BY CODA";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             rs = ps.executeQuery();
             lista = new ArrayList();

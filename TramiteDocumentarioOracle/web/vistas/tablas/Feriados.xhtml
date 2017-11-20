@@ -11,6 +11,10 @@
 
             <ui:define name="content">
                 <h:form id="frm">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <center><h1>FERIADOS</h1></center>
                     <p:growl id="msg" showDetail="true" autoUpdate="true"/>
                     <center><p:panel style="width: 500px; border: none">
                             <p:dataTable id="data"
@@ -19,11 +23,11 @@
                                          var="fer" rowKey="#{fer.codFer}"
                                          rowsPerPageTemplate="5 10 15 20 30 40" 
                                          rows="5">
-                                <p:column headerText="Código" >
-                                    <h:outputText value="#{fer.codFer}" />
+                                <p:column headerText="Código" style="width:15%"  >
+                                    <h:outputText value="#{fer.codFer}" style="alignment-adjust: central"/>
                                 </p:column>
-                                <p:column headerText="Día Feriado" >
-                                    <h:outputText value="#{fer.diaFer}" />
+                                <p:column headerText="Día Feriado" style="width:30%" >
+                                    <h:outputText value="#{fer.diaFer}"/>
                                 </p:column>
                                 <f:facet name="footer">
                                     <p:commandButton value="Agregar" 

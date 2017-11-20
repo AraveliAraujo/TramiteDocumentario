@@ -34,79 +34,85 @@
                 </nav>
             </ui:insert>
         </div>
-        
-        <h:form id="frm">
-            <p:growl id="msg" showDetail="true" autoUpdate="true"/>
-            <br/><br/><br/>
-            <p:panelGrid>
-                <div class="col-md-4">
-                    <p:inputText class="form-control" id="busTram" placeholder="Ingresar DNI para buscar"
-                                 value="#{tramitesC.dni}" style="width: 100%"/>
-                </div>
-                <p:commandButton value="Buscar" actionListener="#{tramitesC.listarTramBusqueda()}" update="data msg" />
-                <p:outputLabel value="7654321"/>
-            </p:panelGrid>
-            <br/><br/><br/>
-            <p:dataTable id="data"
-                         paginator="true"
-                         value="#{tramitesC.lstTramBusqueda}"
-                         var="tra" rowKey="#{tra.codTram}"
-                         selection="#{derivacionC.selectedTram}"
-                         selectionMode="single"
-                         rowsPerPageTemplate="5 10 15 20 30 40" 
-                         rows="5">
-                <p:column headerText="Código" >
-                    <h:outputText value="#{tra.codTram}" />
-                </p:column>
-                <p:column headerText="Fecha" >
-                    <h:outputText value="#{tra.fechTram}" />
-                </p:column>
-                <p:column headerText="Estado" >
-                    <h:outputText value="#{tra.estatram}" />
-                </p:column>
-                <p:column headerText="DiasLegales" >
-                    <h:outputText value="#{tra.diasLegales}" />
-                </p:column>
-                <p:column headerText="DiasExcedidos" >
-                    <h:outputText value="#{tra.diasExcedidos}" />
-                </p:column>
-                <p:column headerText="DiasReales" >
-                    <h:outputText value="#{tra.diasReales}" />
-                </p:column>
 
-                <p:rowExpansion>
-                    <div class="row">
+        <h:form id="frm">
+            <center><p:panel style="width: 1000px; border: none">
+                    <p:growl id="msg" showDetail="true" autoUpdate="true"/>
+                    <br/><br/><br/>
+                    <p:panelGrid>
                         <div class="col-md-4">
-                            <h:outputLabel value="Asunto: "/>
-                            <h:outputLabel value="#{tra.asuntoTram}"/>
+                            <h:outputLabel value="Buscar" for="busTram"/>
+                            <p:inputText class="form-control" id="busTram" type="number" placeholder="Ingresar DNI para buscar"
+                                         value="#{tramitesC.dni}" style="width: 100%"/>
+
                         </div>
-                        <div class="col-md-4">
-                            <p:outputLabel value="Usuario: "/>
-                            <p:outputLabel value="#{tra.codUsu}"/>
-                        </div>
-                        <div class="col-md-4">
-                            <p:outputLabel value="Empresa: "/>
-                            <p:outputLabel value="#{tra.codEmpre}"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p:outputLabel value="Área: "/>
-                            <p:outputLabel value="#{tra.codA}"/>
-                        </div>
-                        <div class="col-md-4">
-                            <p:outputLabel value="Documento: "/>
-                            <p:outputLabel value="#{tra.codDocs}"/>
-                        </div>
-                    </div>
-                </p:rowExpansion>
-            </p:dataTable>
-            <p:contextMenu for="data">
-                <p:menuitem icon="ui-icon-pencil"
-                            value="Ver Derivaciones" actionListener="#{derivacionC.listarDerivacion()}"
-                            update=":editform" oncomplete="PF('derivaciones').show()" >                            
-                </p:menuitem>
-            </p:contextMenu>
+                    </p:panelGrid>
+                    <br/>
+                    <p:commandButton value="Buscar" actionListener="#{tramitesC.listarTramBusqueda()}" update="data msg" />
+                    <p:outputLabel value="7654321"/>
+                    <br/>
+                    <br/>
+                    <p:dataTable id="data"
+                                 paginator="true"
+                                 value="#{tramitesC.lstTramBusqueda}"
+                                 var="tra" rowKey="#{tra.codTram}"
+                                 selection="#{derivacionC.selectedTram}"
+                                 selectionMode="single"
+                                 rowsPerPageTemplate="5 10 15 20 30 40" 
+                                 rows="5">
+                        <p:column headerText="Código" >
+                            <h:outputText value="#{tra.codTram}" />
+                        </p:column>
+                        <p:column headerText="Fecha" >
+                            <h:outputText value="#{tra.fechTram}" />
+                        </p:column>
+                        <p:column headerText="Estado" >
+                            <h:outputText value="#{tra.estatram}" />
+                        </p:column>
+                        <p:column headerText="DiasLegales" >
+                            <h:outputText value="#{tra.diasLegales}" />
+                        </p:column>
+                        <p:column headerText="DiasExcedidos" >
+                            <h:outputText value="#{tra.diasExcedidos}" />
+                        </p:column>
+                        <p:column headerText="DiasReales" >
+                            <h:outputText value="#{tra.diasReales}" />
+                        </p:column>
+
+                        <p:rowExpansion>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h:outputLabel value="Asunto: "/>
+                                    <h:outputLabel value="#{tra.asuntoTram}"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Usuario: "/>
+                                    <p:outputLabel value="#{tra.codUsu}"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Empresa: "/>
+                                    <p:outputLabel value="#{tra.codEmpre}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Área: "/>
+                                    <p:outputLabel value="#{tra.codA}"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Documento: "/>
+                                    <p:outputLabel value="#{tra.codDocs}"/>
+                                </div>
+                            </div>
+                        </p:rowExpansion>
+                    </p:dataTable>
+                    <p:contextMenu for="data">
+                        <p:menuitem icon="ui-icon-pencil"
+                                    value="Ver Derivaciones" actionListener="#{derivacionC.listarDerivacion()}"
+                                    update=":editform" oncomplete="PF('derivaciones').show()" >                            
+                        </p:menuitem>
+                    </p:contextMenu>
+                </p:panel></center>
         </h:form>
         <ui:include src="vistas/tablas/view/derivaciones.xhtml"/>
         <ui:include src="vistas/tablas/add/addDerivacion.xhtml"/>

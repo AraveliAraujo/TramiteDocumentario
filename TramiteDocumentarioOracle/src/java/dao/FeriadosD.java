@@ -30,7 +30,7 @@ public class FeriadosD extends Dao{
         ResultSet rs;
         try {
             this.Conectar();
-            String sql = "SELECT * FROM FERIADOS";
+            String sql = "SELECT * FROM FERIADOS ORDER BY CODFER";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
             rs = ps.executeQuery();
             lista = new ArrayList();

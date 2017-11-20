@@ -41,6 +41,17 @@ public class DocumentosM {
     public String getTupa() {
         return Tupa;
     }
+    
+    public String getEsTupa(){
+        switch (Integer.parseInt(String.valueOf(this.Tupa))) {
+            case 1:
+                return "SÍ";
+            case 0:
+                return "NO";
+            default:
+                return "Desconocido";
+        }
+    }
 
     public void setTupa(String Tupa) {
         this.Tupa = Tupa;

@@ -16,7 +16,7 @@
                   closeOnEscape="true">
 
             <h:form id="editform">
-
+                <p:panel style="width: 1000px; border: none">
                 <p:dataTable  id="data"
                               paginator="true" reflow="true" 
                               value="#{derivacionC.lstDerivacion}"
@@ -44,6 +44,7 @@
                                  immediate="true"/>
                 <br/>
                 <br/>
+                </p:panel>
             </h:form>
         </p:dialog>
     </ui:composition>

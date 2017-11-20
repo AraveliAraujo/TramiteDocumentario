@@ -11,7 +11,7 @@ public class Dao {
     public void Conectar() throws Exception {       //Metodo con los datos de acceso
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "TramiteDocumentario_v1", "060801");
+            cn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "TramiteDocumentario_v2", "060801");
         } catch (ClassNotFoundException | SQLException e) {
             throw e;
         }

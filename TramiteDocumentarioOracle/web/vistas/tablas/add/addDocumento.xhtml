@@ -12,7 +12,7 @@
                   modal="true"                  
                   resizable="false"
                   appendTo="@(body)"
-                  header="Derivar Documento"
+                  header="Agregar Documento"
                   responsive="true"
                   closeOnEscape="true">
             <h:form id="addform">
@@ -21,31 +21,38 @@
                 </p:panelGrid>
                 <p:panel id="frmProd">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-12">
                             <h:outputLabel value="Documento" for="tipDoc"/>
                             <p:inputText class="form-control" id="tipDoc" 
                                          value="#{documentosC.documentos.tipoDocs}" style="width: 100%"/>
                         </div>
-                        <div class="col-md-5">
-                            <h:outputLabel value="Días Límite" for="diasDoc"/>
-                            <p:inputText class="form-control" id="diasDoc" type="number"
-                                         value="#{documentosC.documentos.diaDocs}" style="width: 100%"/>
-                        </div>
-                        <div class="col-md-5">
-                            <h:outputLabel value="Precio" for="precDoc"/>
-                            <p:inputText class="form-control" id="precDoc" type="number"
-                                         value="#{documentosC.documentos.costDocs}" style="width: 100%"/>
-                        </div>
-
-                        <div class="col-md-3">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <p:outputLabel value="TUPA" for="txtTupa"/>
                             <p:selectOneMenu value="#{documentosC.documentos.tupa}" id="txtTupa" style="width: 100%"
                                              required="true" requiredMessage="Deifnir si es Tupa">
                                 <f:selectItem itemLabel="Seleccione"/>
                                 <f:selectItem itemLabel="SÍ" itemValue="1"/>
                                 <f:selectItem itemLabel="NO" itemValue="0"/>
+                                <p:ajax event="change" update="diasDoc precDoc" listener="#{documentosC.condicion}" />
                             </p:selectOneMenu>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h:outputLabel value="Días Límite" for="diasDoc"/>
+                            <p:inputText class="form-control" id="diasDoc" type="number" disabled="#{documentosC.acdes}"
+                                         value="#{documentosC.documentos.diaDocs}" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h:outputLabel value="Precio" for="precDoc"/>
+                            <p:inputText class="form-control" id="precDoc" type="number" disabled="#{documentosC.acdes}"
+                                         value="#{documentosC.documentos.costDocs}" style="width: 100%"/>
+                        </div>
+
                     </div>
                     <br/>
                     <p:commandButton value="Ingresar"

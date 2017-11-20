@@ -1,6 +1,7 @@
 package controlador;
 
 import dao.DerivacionD;
+import dao.TramitesD;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -13,7 +14,7 @@ import modelo.TramitesM;
 
 @ManagedBean
 @SessionScoped
-public class DerivacionC implements Serializable{
+public class DerivacionC implements Serializable {
 
     DerivacionM derivacion = new DerivacionM();
     DerivacionD dao = new DerivacionD();
@@ -50,11 +51,21 @@ public class DerivacionC implements Serializable{
     public void preparedTramites() throws Exception {
         selected = new DerivacionM();
     }
-    
-    
+
     public void clearDerivacion() {
         try {
             derivacion = new DerivacionM();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void cerrarTramite() throws Exception {
+        TramitesD dao2;
+        try {
+            dao2 = new TramitesD();
+            dao2.cerrarTramite(selectedTram, "I");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Correcto", "Trámite Cerrado"));
         } catch (Exception e) {
             throw e;
         }

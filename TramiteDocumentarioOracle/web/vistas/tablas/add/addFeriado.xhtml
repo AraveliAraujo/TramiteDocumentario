@@ -21,15 +21,16 @@
                 <p:panel id="frmFeriado">
                     <div class="row">
                         <div class="col-md-4">
-                            <p:outputLabel for="german" value="German:" />
-                            <p:calendar id="german" value="#{feriadosC.feriados.diaFer}" navigator="true" />
+                            <p:outputLabel for="german" value="FERIADO:" />
+                            <p:calendar id="german" value="#{feriadosC.feriados.diaFer}" required="true" requiredMessage="Asignar Feriado"
+                                        navigator="true" placeholder="Ejemplo: 10/10/17" />
 
                         </div>
                     </div>
                     <br/>
                     <p:commandButton value="Ingresar"
                                      icon="ui-icon-check"
-                                     actionListener="#{feriadosC.addaaaferiado()}"
+                                     actionListener="#{feriadosC.addferiado()}"
                                      oncomplete="handleSubmit(args,'addFeriado');"
                                      update="addform :frm:msg :frm:data"/>
 

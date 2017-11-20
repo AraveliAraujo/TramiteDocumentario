@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="addUser"
+                  widgetVar="addUsuario"
+                  modal="true"                  
+                  resizable="false"
+                  appendTo="@(body)"
+                  header="Agregar Usuario"
+                  responsive="true"
+                  closeOnEscape="true">
+            <h:form id="addformu">
+                <p:panelGrid>
+                    <p:growl id="msg" showDetail="true" autoUpdate="true"/>
+                </p:panelGrid>
+                <p:panel id="frmProd" style="width: 500px">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h:outputLabel value="DNI" for="dniUser"/>
+                            <p:inputMask mask="99999999" class="form-control" id="dniUser" 
+                                         value="#{usuariosC.usuarios.dniUsu}" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-6">
+                            <h:outputLabel value="Nombres" for="nomUser"/>
+                            <p:inputText class="form-control" id="nomUser"
+                                         value="#{usuariosC.usuarios.nomUsu}" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h:outputLabel value="Apellidos" for="apeUser"/>
+                            <p:inputText class="form-control" id="precDoc"
+                                         value="#{usuariosC.usuarios.apeUsu}" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-6">
+                            <h:outputLabel value="Email" for="emaUser"/>
+                            <p:inputText class="form-control" id="emaUser"
+                                         value="#{usuariosC.usuarios.emaUsu}" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h:outputLabel value="Celular" for="celUser"/>
+                            <p:inputMask mask="999999999" class="form-control" id="celUser"
+                                         value="#{usuariosC.usuarios.celUsu}" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-6">
+                            <h:outputLabel value="Dirección" for="dirUser"/>
+                            <p:inputText class="form-control" id="dirUser"
+                                         value="#{usuariosC.usuarios.dirUsum}" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h:outputLabel value="Ubigeo" for="ubiUser"/>
+                            <p:autoComplete dropdown="false" maxResults="5" id="dist"
+                                        placeholder="Distrito" value="#{usuariosC.usuarios.codUbi}"
+                                        completeMethod="#{usuariosC.completeTextUbi}"
+                                        style="width: 90%"/>
+
+                        </div>
+
+                    </div>
+                    <br/>
+
+                    <p:commandButton value="Ingresar"
+                                     icon="ui-icon-check"
+                                     actionListener="#{usuariosC.addUsers()}"
+                                     oncomplete="handleSubmit(args,'addUsuario');"
+                                     update=":addformu :frm:msg :frm:data :addTrami"/>
+
+                    <p:commandButton value="Cancelar"
+                                     icon="ui-icon-close" 
+                                     onclick="PF('addUsuario').hide()"
+                                     immediate="true"/>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>

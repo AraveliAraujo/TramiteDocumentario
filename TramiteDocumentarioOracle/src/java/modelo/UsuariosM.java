@@ -1,8 +1,14 @@
 package modelo;
 
+import org.hibernate.validator.constraints.Email;
+
 public class UsuariosM {
-    private String CodUsu, DniUsu, NomUsu,  
-            ApeUsu, EmaUsu, CelUsu, DirUsum, CodUbi;
+
+    private String CodUsu, DniUsu, NomUsu, Dpto, Prov, Dist,
+            ApeUsu, CelUsu, DirUsum, CodUbi;
+
+    @Email(message = "Corregir el correo ingresado")
+    private String EmaUsu;
 
     public String getCodUsu() {
         return CodUsu;
@@ -67,6 +73,29 @@ public class UsuariosM {
     public void setCodUbi(String CodUbi) {
         this.CodUbi = CodUbi;
     }
-    
-    
+
+    public String getDpto() {
+        return Dpto;
+    }
+
+    public void setDpto(String Dpto) {
+        this.Dpto = Dpto;
+    }
+
+    public String getProv() {
+        return Prov;
+    }
+
+    public void setProv(String Prov) {
+        this.Prov = Prov;
+    }
+
+    public String getDist() {
+        return Dist;
+    }
+
+    public void setDist(String Dist) {
+        this.Dist = Dist;
+    }
+
 }

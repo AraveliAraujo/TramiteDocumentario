@@ -21,22 +21,43 @@ public class TramitesC implements Serializable {
     private List<TramitesM> lstTramBusqueda;
     private List<TramitesM> lstEmpleados;
     private List<TramitesM> lstDerivacion;
+    private List<TramitesM> lstTraFilter;
     private TramitesM selected;
     private String dni = null;
+    private TramitesM SelectedTramites;
 
     @PostConstruct
     public void inicio() {
         try {
-            listarTramites();
             listarTramFechas();
             listarEmpleados();
+            listarTramitesAll();
         } catch (Exception e) {
         }
     }
 
     public void listarTramites() throws Exception {
         try {
-            lstTramites = dao.listarTramites();
+            lstTramites = dao.listarAllTramites();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Tipo Trámites", "Pendientes"));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void listarTramitesAll() throws Exception {
+        try {
+            lstTramites = dao.listarAllTramites();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Tipo Trámites", "Todos"));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void listarTramitesInac() throws Exception {
+        try {
+            lstTramites = dao.listarTramitesInac();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Tipo Trámites", "Cerrados"));
         } catch (Exception e) {
             throw e;
         }
@@ -60,6 +81,7 @@ public class TramitesC implements Serializable {
         try {
             dao = new TramitesD();
             lstTramBusqueda = dao.listarTramBusqueda(dni);
+            limpiar();
         } catch (Exception e) {
             System.out.println("No Encontrado" + e);
         }
@@ -67,6 +89,8 @@ public class TramitesC implements Serializable {
 
     public void addTramite() throws Exception {
         try {
+            tramites.setCodUsu(dao.leerUsu(tramites.getCodUsu()));
+            tramites.setCodEmpre(dao.leerEmpre(tramites.getCodEmpre()));
             dao.addTramites(tramites);
             listarTramites();
             limpiar();
@@ -91,7 +115,7 @@ public class TramitesC implements Serializable {
             throw e;
         }
     }
-        
+
     public void editarTram() throws Exception {
         try {
             dao.editTramite(tramites);
@@ -101,7 +125,7 @@ public class TramitesC implements Serializable {
             throw e;
         }
     }
-    
+
     public void pasar() throws Exception {
         try {
             tramites = dao.leer(selected.getCodTram());
@@ -110,6 +134,15 @@ public class TramitesC implements Serializable {
         }
     }
     
+    
+    public List<String> completeTextUsu(String query) throws Exception {
+        return dao.queryAutoCompleteUsu(query);
+    }
+   
+    public List<String> completeTextEmpre(String query) throws Exception {
+        return dao.queryAutoCompleteEmpre(query);
+    }
+
     public void preparedTramites() throws Exception {
         selected = new TramitesM();
     }
@@ -184,6 +217,22 @@ public class TramitesC implements Serializable {
 
     public void setLstEmpleados(List<TramitesM> lstEmpleados) {
         this.lstEmpleados = lstEmpleados;
+    }
+
+    public TramitesM getSelectedTramites() {
+        return SelectedTramites;
+    }
+
+    public void setSelectedTramites(TramitesM SelectedTramites) {
+        this.SelectedTramites = SelectedTramites;
+    }
+
+    public List<TramitesM> getLstTraFilter() {
+        return lstTraFilter;
+    }
+
+    public void setLstTraFilter(List<TramitesM> lstTraFilter) {
+        this.lstTraFilter = lstTraFilter;
     }
 
 }

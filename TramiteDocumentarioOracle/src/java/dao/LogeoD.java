@@ -32,6 +32,8 @@ public class LogeoD extends Dao{
                     case 2:
                         usu.setTemplate("TemplateUser.xhtml");
                         break;
+                    case 3:
+                        usu.setTemplate("TemplateUser.xhtml");
                 }
             } else {
                 usu = null;

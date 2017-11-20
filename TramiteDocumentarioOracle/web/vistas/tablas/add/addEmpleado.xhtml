@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="addUser"
+                  widgetVar="addEmpleado"
+                  modal="true"                  
+                  resizable="false"
+                  appendTo="@(body)"
+                  header="Agregar Empleado"
+                  responsive="true"
+                  closeOnEscape="true">
+            <h:form id="addformu">
+                <p:growl id="msg" showDetail="true" autoUpdate="true"/>
+
+                <p:scrollPanel style="width:250px;height:500px; border: none" mode="native">
+                    <p:panelGrid columns="1" style="border: none">
+
+
+                        <p:inputText class="form-control" id="nomEmple" placeholder="Nombres"
+                                     value="#{empleadosC.empleados.nomEmple}" style="width: 100%"/>
+
+
+                        <p:inputText class="form-control" id="apeEmple" placeholder="Apellidos"
+                                     value="#{empleadosC.empleados.apeEmple}" style="width: 100%"/>
+
+
+                        <p:inputMask mask="99999999" class="form-control" id="dniEmple" placeholder="DNI"
+                                     value="#{empleadosC.empleados.dniEmple}" style="width: 100%"/>
+
+
+
+
+                        <p:inputText class="form-control" id="emaEmple" placeholder="Email"
+                                     value="#{empleadosC.empleados.emaiEmple}" style="width: 100%"/>
+
+
+                        <p:inputMask mask="999999999" class="form-control" id="celEmple" placeholder="Celular"
+                                     value="#{empleadosC.empleados.celEmple}" style="width: 100%"/>
+
+
+                        <p:inputText class="form-control" id="dirEmple" placeholder="Dirección"
+                                     value="#{empleadosC.empleados.dirEmple}" style="width: 100%"/>
+
+
+                        <p:inputText class="form-control" id="userEmple" placeholder="Usuario"
+                                     value="#{empleadosC.empleados.userEmple}" style="width: 100%"/>
+
+
+                        <p:password class="form-control" id="psswPer"  placeholder="Contraseña"
+                                    value="#{empleadosC.empleados.pssEmple}" style="width: 100%" feedback="true"
+                                    match="psswPer2" validatorMessage="Las contraseñas no son iguales"/>
+
+
+                        <p:password class="form-control" id="psswPer2" feedback="true" placeholder="Repetir Contraseña"
+                                    value="#{empleadosC.empleados.pssEmple}" style="width: 100%"/>
+
+
+                        <p:selectOneMenu value="#{empleadosC.empleados.levelEmple}" id="txtNivel" style="width: 100%"
+                                         required="true" requiredMessage="Seleccionar Nivel">
+                            <f:selectItem itemLabel="Seleccionar Nivel"/>
+                            <f:selectItem itemLabel="Administrador" itemValue="1"/>
+                            <f:selectItem itemLabel="Usuario" itemValue="2"/>
+                            <f:selectItem itemLabel="Encargado de Área" itemValue="3"/>
+                        </p:selectOneMenu>
+
+
+                        <p:autoComplete dropdown="false" maxResults="5" id="dist"
+                                        placeholder="Distrito" value="#{empleadosC.empleados.codUbi}"
+                                        completeMethod="#{empleadosC.completeTextUbi}"
+                                        style="width: 90%"/>
+
+
+
+                        <p:selectOneMenu value="#{empleadosC.empleados.codA}" id="codA" 
+                                         style="width: 100%" required="true" requiredMessage="Seleccionar Área">
+                            <f:selectItem itemLabel="Seleccionar Área"/>
+                            <f:selectItems value="#{areasC.lstAreas}"
+                                           var="area"
+                                           itemLabel="#{area.nomArea}"
+                                           itemValue="#{area.codArea}"/>
+                        </p:selectOneMenu>
+
+                        <p:commandButton value="Ingresar"
+                                         icon="ui-icon-check"
+                                         actionListener="#{empleadosC.addEmpleado()}"
+                                         oncomplete="handleSubmit(args,'addEmpleado');"
+                                         update="addformu :frm:msg :frm:data"/>
+
+                        <p:commandButton value="Cancelar"
+                                         icon="ui-icon-close" 
+                                         onclick="PF('addEmplaedo').hide()"
+                                         immediate="true"/>
+
+                    </p:panelGrid>
+
+                </p:scrollPanel>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>

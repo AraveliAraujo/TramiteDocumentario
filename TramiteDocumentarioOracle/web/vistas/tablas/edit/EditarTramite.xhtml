@@ -17,18 +17,18 @@
 
             <h:form id="editTram">
 
-                <p:panelGrid id="panel">
+                <p:panel  id="panel" style="width: 1000px; border: none">
 
                     <div class="row">
                         <div class="col-md-4">
                             <h:outputLabel value="Estado" for="fechaTram"/>
-                            <p:inputText class="form-control" id="fechaTram" disabled="true"
-                                         value="En Espera" style="width: 100%"/>
+                            <p:inputText class="form-control" id="fechaTram" readonly="#{logeoC.edit}"
+                                         value="#{tramitesC.tramites.estatram}" style="width: 100%"/>
                         </div>
 
                         <div class="col-md-4">
                             <h:outputLabel value="Respuesta" for="rptaTram"/>
-                            <p:inputText class="form-control" id="rptaTram" 
+                            <p:inputText class="form-control" id="rptaTram" readonly="#{logeoC.edit}"
                                          value="#{tramitesC.tramites.rptaTram}" style="width: 100%"/>
                         </div>
                         <div class="col-md-4">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="col-md-4">
                             <h:outputLabel value="Foliación" for="folTram"/>
-                            <p:inputText class="form-control" id="folTram"
+                            <p:inputText class="form-control" id="folTram" type="number"
                                          value="#{tramitesC.tramites.foliacion}" style="width: 100%"/>
                         </div>
                         <div class="col-md-4">
@@ -109,7 +109,7 @@
                                      immediate="true"/>
                     <br/>
                     <br/>
-                </p:panelGrid>
+                </p:panel>
                 <br/>
                 <br/>
             </h:form>

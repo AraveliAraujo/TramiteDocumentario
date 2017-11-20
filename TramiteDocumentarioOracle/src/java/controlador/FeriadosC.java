@@ -35,7 +35,7 @@ public class FeriadosC implements Serializable{
         }
     }
 
-    public void addaaaferiado() throws Exception {
+    public void addferiado() throws Exception {
         try {
             dao.addFeriados(feriados);
             listarFeriados();

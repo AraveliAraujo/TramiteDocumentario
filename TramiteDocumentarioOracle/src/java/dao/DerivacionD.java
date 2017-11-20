@@ -2,11 +2,13 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.DerivacionM;
+import modelo.TramitesM;
 
-public class DerivacionD extends Dao{
+public class DerivacionD extends Dao {
 
     public void addDerivacion(DerivacionM derivacion) throws Exception {
         try {
@@ -22,8 +24,8 @@ public class DerivacionD extends Dao{
             throw e;
         }
     }
-    
-     public List<DerivacionM> listarDerivaciones(String doc) throws Exception {
+
+    public List<DerivacionM> listarDerivaciones(String doc) throws Exception {
         List<DerivacionM> lista;
         ResultSet rs;
         try {
@@ -50,4 +52,5 @@ public class DerivacionD extends Dao{
         }
         return lista;
     }
+
 }

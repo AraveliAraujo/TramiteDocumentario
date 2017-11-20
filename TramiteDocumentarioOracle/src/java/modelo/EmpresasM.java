@@ -1,7 +1,7 @@
 package modelo;
 
 public class EmpresasM {
-    private String CodEmpre, NomEmpre, RucEmpre,
+    private String CodEmpre, NomEmpre, RucEmpre, Dpto, Prov, Dist,
             DirEmpre, TelEmpre, CodUbi;
 
     public String getCodEmpre() {
@@ -50,6 +50,30 @@ public class EmpresasM {
 
     public void setCodUbi(String CodUbi) {
         this.CodUbi = CodUbi;
+    }
+
+    public String getDpto() {
+        return Dpto;
+    }
+
+    public void setDpto(String Dpto) {
+        this.Dpto = Dpto;
+    }
+
+    public String getProv() {
+        return Prov;
+    }
+
+    public void setProv(String Prov) {
+        this.Prov = Prov;
+    }
+
+    public String getDist() {
+        return Dist;
+    }
+
+    public void setDist(String Dist) {
+        this.Dist = Dist;
     }
     
     

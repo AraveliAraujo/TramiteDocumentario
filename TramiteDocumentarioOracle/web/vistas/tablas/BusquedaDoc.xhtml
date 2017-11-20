@@ -14,18 +14,22 @@
         <ui:composition template="./../templates/#{logeoC.user.template}">
             <ui:define name="content">
                 <h:form id="frm">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <center><h1>BÚSQUEDA DE DOCUMENTOS</h1></center>
                     <p:growl id="msg" showDetail="true" autoUpdate="true"/>
                     <p:panelGrid>
                         <div class="col-md-4">
                             <h:outputLabel value="Buscar" for="busTram"/>
-                            <p:inputText class="form-control" id="busTram"
+                            <p:inputText class="form-control" id="busTram" type="number" placeholder="Ingresar DNI para buscar"
                                          value="#{tramitesC.dni}" style="width: 100%"/>
 
                         </div>
-                        <p:commandButton value="Buscar" actionListener="#{tramitesC.listarTramBusqueda()}" update="data msg" />
-                        <p:outputLabel value="7654321"/>
                     </p:panelGrid>
                     <br/>
+                    <p:commandButton value="Buscar" actionListener="#{tramitesC.listarTramBusqueda()}" update="data msg" />
+                    <p:outputLabel value="7654321"/>
                     <br/>
                     <br/>
                     <p:dataTable id="data"

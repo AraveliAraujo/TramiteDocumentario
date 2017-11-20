@@ -23,6 +23,6 @@ public class Funciones {
     }
     
     public static void main(String[] args) {
-        System.out.println(encriptar("71448173"));
+        System.out.println(encriptar("cuadros"));
     }
 }

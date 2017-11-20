@@ -14,8 +14,14 @@
         <ui:composition template="./../templates/#{logeoC.user.template}">
             <ui:define name="content">
                 <h:form id="frm">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <center><h1>TRÁMITES</h1></center>
                     <p:growl id="msg" showDetail="true" autoUpdate="true"/>
-                    <p:dataTable id="data" reflow="true"
+
+
+                    <p:dataTable id="data" reflow="true" filteredValue="#{tramitesC.lstTraFilter}"
                                  paginator="true" rowKey="#{tra.codTram}"
                                  selection="#{derivacionC.selectedTram}"
                                  value="#{tramitesC.lstTramites}"
@@ -25,13 +31,13 @@
                         <p:column style="width: 50px">
                             <p:rowToggler />
                         </p:column>
-                        <p:column headerText="Código" >
+                        <p:column headerText="Código" style="width:7%; alignment-adjust: central" filterStyle="width:100%" filterBy="#{tra.codTram}" filterMatchMode="contains">
                             <h:outputText value="#{tra.codTram}" />
                         </p:column>
-                        <p:column headerText="Fecha" >
+                        <p:column headerText="Fecha" style="width:9%; alignment-adjust: central" filterStyle="width:100%" filterBy="#{tra.fechTram}" filterMatchMode="contains">
                             <h:outputText value="#{tra.fechTram}" />
                         </p:column>
-                        <p:column headerText="Estado" >
+                        <p:column headerText="Estado" filterBy="#{tra.estatram}" filterMatchMode="contains" filterStyle="width:100%">
                             <h:outputText value="#{tra.estatram}" />
                         </p:column>
                         <p:column headerText="Respuesta" >
@@ -40,33 +46,30 @@
                         <p:column headerText="Observación" >
                             <h:outputText value="#{tra.obserTram}" />
                         </p:column>
-                        <p:column headerText="Foliación" >
-                            <h:outputText value="#{tra.foliacion}" />
+                        <p:column headerText="Asunto" filterBy="#{tra.asuntoTram}" filterMatchMode="contains" filterStyle="width:100%">
+                            <h:outputText value="#{tra.asuntoTram}" />
+                        </p:column>
+                        <p:column headerText="Usuario" filterBy="#{tra.nomUsu} #{tra.apeUsu}" filterMatchMode="contains" filterStyle="width:100%" >
+                            <h:outputText value="#{tra.nomUsu} #{tra.apeUsu}" />
                         </p:column>
 
                         <p:rowExpansion>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <h:outputLabel value="Asunto: "/>
-                                    <h:outputLabel value="#{tra.asuntoTram}"/>
-                                </div>
-                                <div class="col-md-4">
-                                    <p:outputLabel value="Usuario: "/>
-                                    <p:outputLabel value="#{tra.codUsu}"/>
-                                </div>
-                                <div class="col-md-4">
                                     <p:outputLabel value="Empresa: "/>
-                                    <p:outputLabel value="#{tra.codEmpre}"/>
+                                    <p:outputLabel value="#{tra.nomEmpre}"/>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-4">
                                     <p:outputLabel value="Área: "/>
-                                    <p:outputLabel value="#{tra.codA}"/>
+                                    <p:outputLabel value="#{tra.nomA}"/>
                                 </div>
                                 <div class="col-md-4">
                                     <p:outputLabel value="Documento: "/>
-                                    <p:outputLabel value="#{tra.codDocs}"/>
+                                    <p:outputLabel value="#{tra.tipodocs}"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <p:outputLabel value="Foliación: "/>
+                                    <p:outputLabel value="#{tra.foliacion}"/>
                                 </div>
                             </div>
                         </p:rowExpansion>
@@ -76,6 +79,9 @@
                                              actionListener="#{tramitesC.preparedTramites()}"
                                              oncomplete="PF('addTramite').show()"
                                              update=":addform"/>
+                            <p:commandButton value="Actualizar" update="data"
+                                             icon="ui-icon-refresh"
+                                             actionListener="#{tramitesC.listarTramites()}"/>
                         </f:facet>
                     </p:dataTable>
                     <p:contextMenu for="data">
@@ -84,12 +90,15 @@
                                     update=":editform" oncomplete="PF('derivaciones').show()" >                            
                         </p:menuitem>
                         <p:menuitem icon="ui-icon-pencil"
-                                    value="Derivar Trámite"                                     
+                                    value="Derivar Trámite" 
                                     update=":editform" oncomplete="PF('addDerivacion').show()" >                            
                         </p:menuitem>
                         <p:menuitem icon="ui-icon-pencil"
                                     value="Editar Trámite"  actionListener="#{tramitesC.pasar()}"                                   
                                     update="editTramite" oncomplete="PF('editarTram').show()" >                            
+                        </p:menuitem>
+                        <p:menuitem icon="ui-icon-pencil" update="data" rendered="#{logeoC.cerrar}"
+                                    value="Cerrar Trámite"  actionListener="#{derivacionC.cerrarTramite()}">                   
                         </p:menuitem>
                     </p:contextMenu>
                 </h:form>

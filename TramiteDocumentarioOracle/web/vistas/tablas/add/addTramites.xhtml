@@ -19,9 +19,9 @@
                 <p:panelGrid>
                     <p:growl id="msg" showDetail="true" autoUpdate="true"/>
                 </p:panelGrid>
-                <p:panel id="frmProd">
-                    <div class="row">
-                        
+                <p:scrollPanel style="width: 1000px; border: none" mode="native">
+                <p:panel id="frmProd" style="width: 1000px; border: none">
+                    <div class="row">                        
                         <div class="col-md-4">
                             <h:outputLabel value="Observación" for="obserTram"/>
                             <p:inputText class="form-control" id="obserTram" 
@@ -41,26 +41,19 @@
                         <div class="col-md-3">
                             <h:outputLabel value="Usuario"/>
                             <br/>
-                            <p:selectOneMenu value="#{tramitesC.tramites.codUsu}" id="codUsu" 
-                                             style="width: 100%" required="true" requiredMessage="Seleccionar Usuario">
-                                <f:selectItem itemLabel="Seleccione"/>
-                                <f:selectItems value="#{usuariosC.lstUsuarios}"
-                                               var="usu"
-                                               itemLabel="#{usu.nomUsu} #{usu.apeUsu}"
-                                               itemValue="#{usu.codUsu}"/>
-                            </p:selectOneMenu>
+                            <p:autoComplete dropdown="false" maxResults="5" id="dist" required="true" requiredMessage="Ingresar Usuario"
+                                            placeholder="Usuario" value="#{tramitesC.tramites.codUsu}"
+                                            completeMethod="#{tramitesC.completeTextUsu}"
+                                        style="width: 90%"/>
+                            
                         </div>
                         <div class="col-md-3">
                             <h:outputLabel value="Empresa"/>
                             <br/>
-                            <p:selectOneMenu value="#{tramitesC.tramites.codEmpre}" id="codEmpre" 
-                                             style="width: 100%" required="true" requiredMessage="Seleccionar Empresa">
-                                <f:selectItem itemLabel="Seleccione"/>
-                                <f:selectItems value="#{empresasC.lstEmpresas}"
-                                               var="empre"
-                                               itemLabel="#{empre.nomEmpre}"
-                                               itemValue="#{empre.codEmpre}"/>
-                            </p:selectOneMenu>
+                            <p:autoComplete dropdown="false" maxResults="5" id="empresa" required="true" requiredMessage="Ingresar Empresa"
+                                           placeholder="Empresa" value="#{tramitesC.tramites.codEmpre}"
+                                           completeMethod="#{tramitesC.completeTextEmpre}"
+                                        style="width: 90%"/>
                         </div>
                         <div class="col-md-3">
                             <h:outputLabel value="Área"/>
@@ -99,8 +92,16 @@
                                      icon="ui-icon-close" actionListener="#{tramitesC.limpiar()}"
                                      onclick="PF('addTramite').hide()"
                                      immediate="true"/>
+
+                    <p:commandButton value="Nuevo Usuario"
+                                     icon="ui-icon-plusthick" style="float: right;"
+                                     actionListener="#{usuariosC.preparedUsuarios()}"
+                                     oncomplete="PF('addUsuario').show()"
+                                     update=":addform"/>
                 </p:panel>
+                    </p:scrollPanel>
             </h:form>
+            <ui:include src="addUsuarios.xhtml"/>
         </p:dialog>
     </ui:composition>
 </html>
